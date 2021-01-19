@@ -8,7 +8,7 @@ end
 begin
   require "rspec"
 
-  RSpec.configure do
+  RSpec.configure do |config|
     config.around do |example|
       if CiLogger.enabled
         Rails.logger.debug("start example at #{example.location}")
