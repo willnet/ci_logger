@@ -10,7 +10,7 @@ begin
 
   RSpec.configure do |config|
     config.around do |example|
-      if CiLogger.enabled
+      if Rails.application.config.ci_logger.enabled
         Rails.logger.debug("start example at #{example.location}")
         example.run
         if example.execution_result.status == :failed

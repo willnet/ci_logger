@@ -4,7 +4,7 @@ class CiLoggerTest < ActiveSupport::TestCase
   LOGFILE_PATH = '/tmp/ciloggertest.log'
 
   setup do
-    log = Logger.new(LOGFILE_PATH)
+  log = Logger.new(LOGFILE_PATH)
     @logger = CiLogger::Logger.new(log)
   end
 
