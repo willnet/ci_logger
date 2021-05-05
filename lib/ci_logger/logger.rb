@@ -19,9 +19,9 @@ module CiLogger
     end
 
     def sync
-      temporary_log.each do |severity:, message:, progname:|
-        if @level <= severity
-          @original.add(severity, message, progname)
+      temporary_log.each do |l|
+        if @level <= l[:severity]
+          @original.add(l[:severity], l[:message], l[:progname])
         end
       end
       temporary_log.clear
