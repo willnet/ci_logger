@@ -13,7 +13,7 @@ begin
       if Rails.application.config.ci_logger.enabled
         Rails.logger.debug("start example at #{example.location}")
         example.run
-        if example.execution_result.status == :failed
+        if example.execution_result.exception
           Rails.logger.debug("finish example at #{example.location}")
           Rails.logger.sync
         else
