@@ -33,6 +33,12 @@ begin
   RSpec.configure do |c|
     c.add_formatter 'progress'
     c.add_formatter StatusFormatter
+
+    config.before do |example|
+      if Rails.application.config.ci_logger.enabled
+        Rails.logger.debug("start example at #{example.location}")
+      end
+    end
   end
 rescue LoadError
 end
