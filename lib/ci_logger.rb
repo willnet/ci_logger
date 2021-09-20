@@ -30,9 +30,9 @@ begin
     alias example_failed example_finished
   end
 
-  RSpec.configure do |c|
-    c.add_formatter 'progress'
-    c.add_formatter StatusFormatter
+  RSpec.configure do |config|
+    config.add_formatter 'progress'
+    config.add_formatter StatusFormatter
 
     config.before do |example|
       if Rails.application.config.ci_logger.enabled
