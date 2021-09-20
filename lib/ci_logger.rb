@@ -31,6 +31,7 @@ begin
   end
 
   RSpec.configure do |c|
+    c.add_formatter 'progress'
     c.add_formatter StatusFormatter
   end
 rescue LoadError
