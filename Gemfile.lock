@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     ci_logger (0.1.0)
-      rails (>= 5.0.0)
+      rails (>= 5.2.0)
       rspec
 
 GEM
@@ -88,6 +88,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.3-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.3-x86_64-linux)
+      racc (~> 1.4)
     racc (1.5.2)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -151,10 +153,11 @@ GEM
 PLATFORMS
   x86_64-darwin-19
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   ci_logger!
   sqlite3
 
 BUNDLED WITH
-   2.2.15
+   2.2.22
