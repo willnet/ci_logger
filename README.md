@@ -4,8 +4,10 @@ Faster Logger for CI
 
 ## prerequisite
 
-- rspec
-- rails
+- rspec-rails
+- rails(>= 5.2)
+
+If you want minitest integration, send Pull Request! 
 
 ## Usage
 
