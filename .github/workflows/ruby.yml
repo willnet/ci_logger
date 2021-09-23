@@ -24,6 +24,11 @@ jobs:
           - rails_5_2
           - rails_6_0
           - rails_6_1
+        exclude:
+          - ruby-version: '3.0'
+            gemfile: rails_5_2
+          - ruby-version: '3.0'
+            gemfile: rails_6_0
     env:
       BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
 
