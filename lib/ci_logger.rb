@@ -6,7 +6,7 @@ module CiLogger
   begin
     require "rspec/rails"
 
-    class StatusFormatter
+    class Formatter
       RSpec::Core::Formatters.register self, :example_passed, :example_pending, :example_failed
 
       def initialize(_out)
@@ -29,17 +29,6 @@ module CiLogger
 
       def example_pending(_notification)
         Rails.logger.clear
-      end
-    end
-
-    RSpec.configure do |config|
-      config.add_formatter 'progress'
-      config.add_formatter StatusFormatter
-
-      config.before do |example|
-        if Rails.application.config.ci_logger.enabled
-          Rails.logger.debug("start example at #{example.location}")
-        end
       end
     end
   rescue LoadError

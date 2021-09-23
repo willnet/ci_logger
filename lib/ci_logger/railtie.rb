@@ -4,7 +4,17 @@ module CiLogger
     config.ci_logger.enabled = false
 
     config.before_initialize do
-      Rails.logger = CiLogger::Logger.new(Rails.logger) if config.ci_logger.enabled
+      if config.ci_logger.enabled
+        Rails.logger = CiLogger::Logger.new(Rails.logger)
+
+        RSpec.configure do |config|
+          config.add_formatter 'progress'
+          config.add_formatter ::CiLogger::Formatter
+          config.before do |example|
+            Rails.logger.debug("start example at #{example.location}")
+          end
+        end
+      end
     end
   end
 end
