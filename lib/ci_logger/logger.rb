@@ -7,18 +7,6 @@ module CiLogger
       self.level = :debug
     end
 
-    def clear
-      temporary_log.clear
-    end
-
-    def temporary_log
-      @temporary_log ||= []
-    end
-
-    def add(severity, message = nil, progname = nil)
-      temporary_log << { severity: severity, message: message, progname: progname }
-    end
-
     def sync
       temporary_log.each do |l|
         if @level <= l[:severity]
@@ -33,6 +21,20 @@ module CiLogger
       sync
     ensure
       @original.level = :debug
+    end
+
+    def clear
+      temporary_log.clear
+    end
+
+    private
+
+    def temporary_log
+      @temporary_log ||= []
+    end
+
+    def add(severity, message = nil, progname = nil)
+      temporary_log << { severity: severity, message: message, progname: progname }
     end
 
     def method_missing(symbol, *args, &block)
