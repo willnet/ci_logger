@@ -4,7 +4,7 @@ class CiLoggerTest < ActiveSupport::TestCase
   LOGFILE_PATH = '/tmp/ciloggertest.log'
 
   setup do
-    log = Logger.new(LOGFILE_PATH)
+    log = Logger.new(LOGFILE_PATH, level: :info)
     @logger = CiLogger::Logger.new(log)
   end
 
@@ -30,6 +30,15 @@ class CiLoggerTest < ActiveSupport::TestCase
     @logger.debug 'ci_logger!'
     @logger.sync
     assert_not File.read(LOGFILE_PATH).match?('ci_logger!')
+  end
+
+  test "CiLogger#sync_with_original_level output before it write if it's level is equal or higher than original logger's one" do
+    @logger.debug 'ci_logger!'
+    @logger.info 'hello!'
+    @logger.sync_with_original_level
+    log = File.read(LOGFILE_PATH)
+    assert_not log.match?('ci_logger!')
+    assert log.match?('hello!')
   end
 
   test "CiLogger accepts methods original logger has" do

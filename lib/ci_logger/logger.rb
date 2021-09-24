@@ -2,6 +2,7 @@ module CiLogger
   class Logger < ::Logger
     def initialize(original)
       @original = original
+      @original_level = @original.level
       @original.level = :debug
       self.level = :debug
     end
@@ -25,6 +26,13 @@ module CiLogger
         end
       end
       temporary_log.clear
+    end
+
+    def sync_with_original_level
+      @original.level = @original_level
+      sync
+    ensure
+      @original.level = :debug
     end
 
     def method_missing(symbol, *args, &block)

@@ -36,7 +36,7 @@ class RspecIntegrationTest < ActiveSupport::TestCase
     assert_not File.empty?(LOGFILE_PATH)
   end
 
-  test "success test doesn't write logs on CiLogger disabled" do
+  test "success test writes logs on CiLogger disabled" do
     Rails.application.config.ci_logger.enabled = false
     group = RSpec.describe 'hello', type: :request
     group.example do
@@ -44,7 +44,8 @@ class RspecIntegrationTest < ActiveSupport::TestCase
       expect(response.status).to eq 200
     end
     group.run(@reporter)
-    assert File.empty?(LOGFILE_PATH)
+    assert_not File.empty?(LOGFILE_PATH)
+  ensure
     Rails.application.config.ci_logger.enabled = true
   end
 
@@ -56,7 +57,8 @@ class RspecIntegrationTest < ActiveSupport::TestCase
       expect(response.status).to eq 500
     end
     group.run(@reporter)
-    assert File.empty?(LOGFILE_PATH)
+    assert_not File.empty?(LOGFILE_PATH)
+  ensure
     Rails.application.config.ci_logger.enabled = true
   end
 
@@ -65,7 +67,8 @@ class RspecIntegrationTest < ActiveSupport::TestCase
     group = RSpec.describe 'hello', type: :request
     group.example { raise }
     group.run(@reporter)
-    assert File.empty?(LOGFILE_PATH)
+    assert_not File.empty?(LOGFILE_PATH)
+  ensure
     Rails.application.config.ci_logger.enabled = true
   end
 end

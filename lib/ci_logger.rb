@@ -18,16 +18,24 @@ module CiLogger
         Rails.logger.debug("finish example at #{example.location}")
         Rails.logger.sync
       else
-        Rails.logger.clear
+        Rails.logger.sync_with_original_level
       end
     end
 
     def example_passed(_notification)
-      Rails.logger.clear
+      if Rails.application.config.ci_logger.enabled
+        Rails.logger.clear
+      else
+        Rails.logger.sync_with_original_level
+      end
     end
 
     def example_pending(_notification)
-      Rails.logger.clear
+      if Rails.application.config.ci_logger.enabled
+        Rails.logger.clear
+      else
+        Rails.logger.sync_with_original_level
+      end
     end
   end
 end
