@@ -31,4 +31,9 @@ class CiLoggerTest < ActiveSupport::TestCase
     @logger.sync
     assert_not File.read(LOGFILE_PATH).match?('ci_logger!')
   end
+
+  test "CiLogger accepts methods original logger has" do
+    # tagged is a extension method of the Rails Logger
+    Rails.logger.tagged('hello') { |l| l.debug('world') }
+  end
 end

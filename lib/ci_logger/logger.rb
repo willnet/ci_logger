@@ -26,5 +26,13 @@ module CiLogger
       end
       temporary_log.clear
     end
+
+    def method_missing(symbol, *args, &block)
+      @original.send(symbol, *args, &block)
+    end
+
+    def respond_to_missing?(symbol, include_all)
+      @original.respond_to?(symbol, include_all)
+    end
   end
 end
