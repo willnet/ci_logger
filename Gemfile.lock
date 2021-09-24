@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ci_logger (0.1.0)
+    ci_logger (0.1.1)
       railties (>= 5.2.0)
       rspec-rails
 
@@ -40,8 +40,6 @@ GEM
     method_source (1.0.0)
     minitest (5.14.4)
     nokogiri (1.12.4-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     racc (1.5.2)
     rack (2.2.3)
