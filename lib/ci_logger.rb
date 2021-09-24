@@ -4,7 +4,7 @@ require "ci_logger/logger"
 
 module CiLogger
   begin
-    require "rspec/rails"
+    require "rspec/core"
 
     class Formatter
       RSpec::Core::Formatters.register self, :example_passed, :example_pending, :example_failed
