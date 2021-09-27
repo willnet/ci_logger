@@ -9,7 +9,7 @@ module CiLogger
 
         RSpec.configure do |config|
           config.add_formatter 'progress'
-          config.add_formatter ::CiLogger::Formatter
+          config.add_formatter ::CiLogger::RspecFormatter
           config.before do |example|
             Rails.logger.debug("start example at #{example.location}")
           end

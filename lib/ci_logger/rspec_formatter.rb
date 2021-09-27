@@ -1,7 +1,7 @@
 require "rspec/core"
 
 module CiLogger
-  class Formatter
+  class RspecFormatter
     RSpec::Core::Formatters.register self, :example_passed, :example_pending, :example_failed
 
     def initialize(_out)
