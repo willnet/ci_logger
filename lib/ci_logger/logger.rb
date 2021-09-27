@@ -27,6 +27,14 @@ module CiLogger
       temporary_log.clear
     end
 
+    def formatter
+      @original.formatter
+    end
+
+    def formatter=(f)
+      @original.formatter = f
+    end
+
     private
 
     def temporary_log

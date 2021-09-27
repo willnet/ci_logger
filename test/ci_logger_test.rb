@@ -3,8 +3,15 @@ require "test_helper"
 class CiLoggerTest < ActiveSupport::TestCase
   LOGFILE_PATH = '/tmp/ciloggertest.log'
 
+  class TestFormatter < ::Logger::Formatter
+    def hoge
+      'hoge'
+    end
+  end
+
   setup do
     log = Logger.new(LOGFILE_PATH, level: :info)
+    log.formatter = TestFormatter.new
     @logger = CiLogger::Logger.new(log)
   end
 
@@ -44,5 +51,9 @@ class CiLoggerTest < ActiveSupport::TestCase
   test "CiLogger accepts methods original logger has" do
     # tagged is a extension method of the Rails Logger
     Rails.logger.tagged('hello') { |l| l.debug('world') }
+  end
+
+  test "CiLogger delegates formatter to original logger" do
+    assert_equal 'hoge', @logger.formatter.hoge
   end
 end
