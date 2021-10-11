@@ -32,6 +32,14 @@ class CiLoggerTest < ActiveSupport::TestCase
     assert File.read(LOGFILE_PATH).match?('ci_logger!')
   end
 
+  test "CiLogger::Logger supports block" do
+    @logger.debug do
+      'ci_logger!'
+    end
+    @logger.sync
+    assert File.read(LOGFILE_PATH).match?('ci_logger!')
+  end
+
   test "CiLogger#sync doesn't output log if it's loglevel is lower than setting" do
     @logger.level = :info
     @logger.debug 'ci_logger!'

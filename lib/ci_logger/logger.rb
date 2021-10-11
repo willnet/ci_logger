@@ -42,6 +42,17 @@ module CiLogger
     end
 
     def add(severity, message = nil, progname = nil)
+      if progname.nil?
+        progname = @progname
+      end
+      if message.nil?
+        if block_given?
+          message = yield
+        else
+          message = progname
+          progname = @progname
+        end
+      end
       temporary_log << { severity: severity, message: message, progname: progname }
     end
 
