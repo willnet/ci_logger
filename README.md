@@ -1,6 +1,6 @@
 # CiLogger
 
-Faster Logger for CI
+Logger for CI
 
 ## prerequisite
 
@@ -11,7 +11,9 @@ If you want minitest integration, send Pull Request!
 
 ## Usage
 
-As time pass, CI time increase gradually. Log output takes some times in CI, So someone may want to set :info or :error to loglevel. But we want debug log when CI fails to inspect the root cause. CiLogger output debug log only when CI fails. So we are able to logs and get faster CI.
+We run a large number of tests with CI every day. When a test fails, we have to investigate the log, but as it is, the log output is so large that it is difficult to investigate the cause of the failed test.
+
+CiLogger outputs only the log of failed tests. This is useful when investigating the cause of a failed test.
 
 ## Installation
 Add this line to your application's Gemfile:
