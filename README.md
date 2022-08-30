@@ -1,6 +1,8 @@
 # CiLogger
 
-Logger for CI
+We run a large number of tests with CI every day. When a test fails, we have to investigate the log, but as it is, the log output is so large that it is difficult to investigate the cause of the failed test.
+
+CiLogger outputs only the log of failed tests. This is useful when investigating the cause of a failed test.
 
 ## prerequisite
 
@@ -9,13 +11,8 @@ Logger for CI
 
 If you want minitest integration, send Pull Request! 
 
-## Usage
-
-We run a large number of tests with CI every day. When a test fails, we have to investigate the log, but as it is, the log output is so large that it is difficult to investigate the cause of the failed test.
-
-CiLogger outputs only the log of failed tests. This is useful when investigating the cause of a failed test.
-
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
