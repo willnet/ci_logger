@@ -6,6 +6,7 @@ module CiLogger
     config.before_initialize do
       if config.ci_logger.enabled
         Rails.logger = CiLogger::Logger.new(Rails.logger)
+        require "ci_logger/rspec_formatter"
 
         RSpec.configure do |config|
           config.add_formatter 'progress' if config.formatters.empty?
