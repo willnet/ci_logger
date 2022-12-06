@@ -11,7 +11,7 @@ module CiLogger
     def example_failed(notification)
       if Rails.application.config.ci_logger.enabled
         example = notification.example
-        Rails.logger.debug("finish example at #{example.location}")
+        Rails.logger.debug(Rails.application.config.ci_logger.finish_example_log.gsub("%{location}", example.location))
         Rails.logger.sync
       else
         Rails.logger.sync_with_original_level
