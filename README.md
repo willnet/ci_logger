@@ -7,7 +7,7 @@ CiLogger outputs only the log of failed tests. This is useful when investigating
 ## prerequisite
 
 - rspec
-- rails(>= 5.2)
+- rails(>= 6.0)
 
 If you want minitest integration, send Pull Request! 
 
