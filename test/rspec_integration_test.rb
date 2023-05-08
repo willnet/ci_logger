@@ -19,6 +19,17 @@ class RspecIntegrationTest < ActiveSupport::TestCase
     assert File.empty?(LOGFILE_PATH)
   end
 
+  test "skip test doesn't write logs on CiLogger enabled" do
+    group = RSpec.describe 'hello', type: :request
+    group.example do
+      skip
+      get '/users'
+      expect(response.status).to eq 500
+    end
+    group.run(@reporter)
+    assert File.empty?(LOGFILE_PATH)
+  end
+
   test "failure test write logs on CiLogger enabled" do
     group = RSpec.describe 'hello', type: :request
     group.example do
