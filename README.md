@@ -1,8 +1,8 @@
 # CiLogger
 
-We run a large number of tests with CI every day. When a test fails, we have to investigate the log, but as it is, the log output is so large that it is difficult to investigate the cause of the failed test.
+We perform a significant number of tests using CI on a daily basis. Whenever a test fails, we need to examine the log. However, the current log output is excessively large, making it challenging to identify the root cause of the failed test.
 
-CiLogger outputs only the log of failed tests. This is useful when investigating the cause of a failed test.
+CiLogger specifically generates logs for failed tests, which proves invaluable during the investigation of test failures.
 
 ## prerequisite
 
