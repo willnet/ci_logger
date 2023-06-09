@@ -30,11 +30,20 @@ class RspecIntegrationTest < ActiveSupport::TestCase
     assert File.empty?(LOGFILE_PATH)
   end
 
-  test "failure test write logs on CiLogger enabled" do
+  test "failure request spec write logs on CiLogger enabled" do
     group = RSpec.describe 'hello', type: :request
     group.example do
       get '/users'
       expect(response.status).to eq 500
+    end
+    group.run(@reporter)
+    assert_not File.empty?(LOGFILE_PATH)
+  end
+
+  test "failure model spec write logs on CiLogger enabled" do
+    group = RSpec.describe 'hello', type: :model
+    group.example do
+      expect(true).to eq false
     end
     group.run(@reporter)
     assert_not File.empty?(LOGFILE_PATH)

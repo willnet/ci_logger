@@ -21,7 +21,7 @@ module CiLogger
           config.append_after do |example|
             if !Rails.application.config.ci_logger.enabled
               Rails.logger.sync
-            elsif passed? || skipped?
+            elsif passed?
               Rails.logger.clear
             else
               Rails.logger.debug("finish example at #{example.location}")
