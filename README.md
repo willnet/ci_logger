@@ -6,10 +6,8 @@ CiLogger specifically generates logs for failed tests, which proves invaluable d
 
 ## prerequisite
 
-- rspec
+- rspec or minitest
 - rails(>= 6.0)
-
-If you want minitest integration, send Pull Request! 
 
 ## Installation
 
