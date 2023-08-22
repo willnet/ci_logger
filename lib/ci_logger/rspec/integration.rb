@@ -6,17 +6,17 @@ RSpec.configure do |config|
   config.prepend_before do |example|
     next unless Rails.application.config.ci_logger.enabled
 
-    Rails.logger.debug("start example at #{example.location}")
+    CiLogger::Registry.debug("start example at #{example.location}")
   end
 
   config.append_after do |example|
     if !Rails.application.config.ci_logger.enabled
-      Rails.logger.sync
+      CiLogger::Registry.sync
     elsif passed?
-      Rails.logger.clear
+      CiLogger::Registry.clear
     else
-      Rails.logger.debug("finish example at #{example.location}")
-      Rails.logger.sync
+      CiLogger::Registry.debug("finish example at #{example.location}")
+      CiLogger::Registry.sync
     end
   end
 end
