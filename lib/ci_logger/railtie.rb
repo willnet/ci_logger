@@ -4,7 +4,7 @@ module CiLogger
     config.ci_logger.enabled = false
 
     config.before_initialize do
-      if Rails.application.config.ci_logger.enabled
+      if CiLogger.enabled?
         Rails.logger = CiLogger::Logger.new(Rails.logger)
         begin
           require "rspec/core"
