@@ -4,11 +4,11 @@ module CiLogger
       def before_teardown
         super
         if !Rails.application.config.ci_logger.enabled
-          Rails.logger.sync
+          Registry.sync
         elsif passed? || skipped?
-          Rails.logger.clear
+          Registry.clear
         else
-          Rails.logger.sync
+          Registry.sync
         end
       end
     end

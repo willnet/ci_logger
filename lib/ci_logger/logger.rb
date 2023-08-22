@@ -1,3 +1,5 @@
+require "ci_logger/registry"
+
 module CiLogger
   class Logger < ::Logger
     def initialize(original)
@@ -5,6 +7,7 @@ module CiLogger
       @original_level = @original.level
       @original.level = :debug
       self.level = :debug
+      Registry.register(self)
     end
 
     def sync

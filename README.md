@@ -35,6 +35,15 @@ config.ci_logger.enabled = ENV['CI']
 
 You can replace `ENV['CI']` with what you like.
 
+## Replace loggers besides rails logger
+
+CiLogger replaces Rails.logger by default, but other loggers can be replaced.
+
+```ruby
+your_logger = CiLogger::Logger.new(your_logger)
+your_logger.debug('debug!') # This is only output when the test fails
+```
+
 ## Contributing
 Contribution directions go here.
 
