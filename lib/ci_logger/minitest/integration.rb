@@ -3,7 +3,7 @@ module CiLogger
     module Integration
       def before_teardown
         super
-        if !Rails.application.config.ci_logger.enabled
+        if CiLogger.disabled?
           Registry.sync
         elsif passed? || skipped?
           Registry.clear
