@@ -40,7 +40,7 @@ You can replace `ENV['CI']` with what you like.
 CiLogger replaces Rails.logger by default, but other loggers can be replaced.
 
 ```ruby
-your_logger = CiLogger::Logger.new(your_logger)
+your_logger = CiLogger.new(your_logger)
 your_logger.debug('debug!') # This is only output when the test fails
 ```
 
