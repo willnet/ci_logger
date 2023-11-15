@@ -20,48 +20,38 @@ class LoggerTest < ActiveSupport::TestCase
     File.unlink(LOGFILE_PATH)
   end
 
-  test "CiLogger::Logger#debug doesn't output immediately" do
-    @logger.debug 'ci_logger!'
+  test "CiLogger::Logger#info doesn't output immediately" do
+    @logger.info 'ci_logger!'
 
     assert_not File.read(LOGFILE_PATH).match?('ci_logger!')
   end
 
   test "CiLogger::Logger#sync output before it write" do
-    @logger.debug 'ci_logger!'
+    @logger.info 'ci_logger!'
     @logger.sync
     assert File.read(LOGFILE_PATH).match?('ci_logger!')
   end
 
   test "CiLogger::Logger supports block" do
-    @logger.debug do
+    @logger.info do
       'ci_logger!'
     end
     @logger.sync
     assert File.read(LOGFILE_PATH).match?('ci_logger!')
   end
 
-  test "CiLogger::Logger#sync doesn't output log if it's loglevel is lower than setting" do
-    @logger.level = :info
+  test "CiLogger::Logger#sync doesn't output log if original loglevel is higher" do
     @logger.debug 'ci_logger!'
     @logger.sync
     assert_not File.read(LOGFILE_PATH).match?('ci_logger!')
   end
 
-  test "CiLogger::Logger#sync_with_original_level output before it write if it's level is equal or higher than original logger's one" do
-    @logger.debug 'ci_logger!'
-    @logger.info 'hello!'
-    @logger.sync_with_original_level
-    log = File.read(LOGFILE_PATH)
-    assert_not log.match?('ci_logger!')
-    assert log.match?('hello!')
-  end
-
   test "CiLogger::Logger accepts methods original logger has" do
     # tagged is a extension method of the Rails Logger
-    Rails.logger.tagged('hello') { |l| l.debug('world') }
+    Rails.logger.tagged('hello') { |l| l.info('world') }
   end
 
-  test "CiLogger::Logger delegates formatter to original logger" do
+  test "CiLogger::Logger uses formatter that original logger has" do
     assert_equal 'hoge', @logger.formatter.hoge
   end
 end
