@@ -23,6 +23,7 @@ jobs:
           - rails_6_0
           - rails_6_1
           - rails_7_0
+          - rails_7_1
         exclude:
           - ruby-version: '3.0'
             gemfile: rails_6_0
