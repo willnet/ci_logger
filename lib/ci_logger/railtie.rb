@@ -5,7 +5,14 @@ module CiLogger
 
     config.before_initialize do
       if CiLogger.enabled?
-        Rails.logger = CiLogger::Logger.new(Rails.logger)
+        if defined?(ActiveSupport::BroadcastLogger) && Rails.logger.is_a?(ActiveSupport::BroadcastLogger)
+          Rails.logger.instance_variable_get(:@broadcasts).map! do |logger|
+            CiLogger::Logger.new(logger)
+          end
+        else
+          Rails.logger = CiLogger::Logger.new(Rails.logger)
+        end
+
         begin
           require "rspec/core"
           require "ci_logger/rspec/integration"
