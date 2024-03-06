@@ -1,8 +1,8 @@
 # CiLogger
 
-We perform a significant number of tests using CI on a daily basis. Whenever a test fails, we need to examine the log. However, the current log output is excessively large, making it challenging to identify the root cause of the failed test.
+In our CI process, we often look at logs to figure out issues with flaky tests—tests that fail sometimes but not always, especially when we can't make them fail in the same way on our own computers. The problem is, it's hard to tell which logs are about the failed tests because logs from tests that passed and failed are all mixed together.
 
-CiLogger specifically generates logs for failed tests, which proves invaluable during the investigation of test failures.
+CiLogger makes this easier by only keeping logs from tests that didn't pass, including the tricky flaky ones. This means when a flaky test won't fail the same way for us locally, we can quickly find and look at the right logs to help us understand and fix the problem.
 
 ## prerequisite
 
