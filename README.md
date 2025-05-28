@@ -45,7 +45,18 @@ your_logger.debug('debug!') # This is only output when the test fails
 ```
 
 ## Contributing
-Contribution directions go here.
+
+We welcome contributions!
+
+1. Fork the repository and create a new branch.
+2. Make your changes and add tests if needed.
+3. Run tests to ensure everything works:
+   ```bash
+   $ bundle exec rake
+   ```
+4. Open a pull request on GitHub.
+
+Thank you for your support!
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
