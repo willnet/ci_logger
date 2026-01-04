@@ -3,5 +3,6 @@ source "https://rubygems.org"
 gem "rails", "~> 8.1.0"
 gem "sqlite3"
 gem "logger", ">= 1.6.0"
+gem "minitest", "< 6.0.0"
 
 gemspec path: '../'
